@@ -37,5 +37,9 @@ import fs from 'fs';
 
 
 $("#decimal").keyup(() => {
-  $("#roman").text(dec2Roman(Number($( '#decimal' ).val() )))
+  try {
+    $("#roman").text( dec2Roman(Number($( '#decimal' ).val() )))
+  } catch(e) {
+    $("#roman").html('&#9760;')
+  }
 })
