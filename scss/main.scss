@@ -1,11 +1,8 @@
 @import 'variables/index';
 @import 'base/index';
-@import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC');
+//@import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text|Share+Tech+Mono');
 
-/*
- * Globals
- */
-/* Links */
 a,
 a:focus,
 a:hover {
@@ -28,8 +25,9 @@ a:hover {
  */
 html,
 body {
-  height: 100%;
-  background-color: #666;
+  font-family: 'Crimson Text', serif;
+  //height: 100%;
+  //background-color: #666;
 }
 
 body {
@@ -39,24 +37,33 @@ body {
   -ms-flex-pack: center;
   -webkit-box-pack: center;
   justify-content: center;
-  color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  color: #333;
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 30em;
 }
 
 /*
  * Header
  */
 .masthead {
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
+}
+
+@mixin letterpress {
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: rgba(245, 245, 245, 0.5) 1px 1px 0px;
 }
 
 .masthead-brand {
   margin-bottom: 0;
+  font-family: 'Crimson Text', serif;
+  text-transform: uppercase;
+  color: #222;
 }
 
 .nav-masthead .nav-link {
@@ -69,7 +76,7 @@ body {
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
+  //border-bottom-color: rgba(255, 255, 255, .25);
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -81,7 +88,7 @@ body {
   border-bottom-color: #fff;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 30em) {
   .masthead-brand {
     float: left;
   }
@@ -94,7 +101,7 @@ body {
  * Cover
  */
 .cover {
-  padding: 0 1.5rem;
+  //padding: 0 1.5rem;
 }
 
 .cover .btn-lg {
@@ -103,38 +110,68 @@ body {
 }
 
 .cover-heading {
-  margin-top: 5rem;
-  font-family: 'IM Fell English SC', serif;
+  font-family: 'Crimson Text', serif;
   font-size: 2rem;
-  color: #333;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+  color: #222;
   margin-bottom: 2rem;
 }
 
+#content {
+  border: solid 1px #aaa;
+  margin-top: 4rem;
+}
+
 .roman {
-  margin-top: 2rem;
-  font-family: 'IM Fell English SC', serif;
+  font-family: 'Crimson Text', serif;
   font-size: 3rem;
+  color: #222;
+  width: 100%;
+  text-overflow: clip;
+  overflow-wrap: break-word;
+  position: relative;
+  padding: 20px;
+  text-align: left;
+  background-color: #eee;
+}
+
+#roman {
+  height: auto;
   color: #333;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
 }
 
 input#decimal {
-  background: #888;
-  font-family: 'IM Fell English SC', serif;
+  background: rgba(125, 140, 115, 0.75);
+  //background: #bbb;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 3rem;
-  text-align: center;
+  //text-align: center;
+  line-height: 3rem;
+  padding: 10px 20px;
   border: none;
   outline: none;
+  width: 100%;
+  height: 1.5em;
+  //border-radius: 3px;
+  color: #333;
+  //box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, .5);
+}
+
+input#decimal::placeholder {
+  color: #808080;
 }
 
 input#decimal:focus {
-  border:none;
+  border: none;
 }
 
 /*
  * Footer
  */
-.mastfoot {
-  color: rgba(255, 255, 255, .5);
+.copyright {
+  margin-top: 1rem;
+  font-family: "Share Tech Mono", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.5rem;
+  color: #aaa;
 }
+

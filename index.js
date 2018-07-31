@@ -19,27 +19,25 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import './scss/main.scss'
-
-import {dec2Roman} from 'dec2roman';
-
-// noinspection ES6UnusedImports
-import $ from 'jquery';
-
-// noinspection ES6UnusedImports
-import popper from 'popper.js';
-
 // noinspection ES6UnusedImports
 import bootstrap from 'bootstrap';
 
+import {dec2Roman} from 'dec2roman';
 // noinspection ES6UnusedImports
 import fs from 'fs';
+// noinspection ES6UnusedImports
+import $ from 'jquery';
+// noinspection ES6UnusedImports
+import popper from 'popper.js';
+import './scss/main.scss'
 
 
-$("#decimal").keyup(() => {
+$( '#decimal' ).keyup( () => {
   try {
-    $("#roman").text( dec2Roman(Number($( '#decimal' ).val() )))
-  } catch(e) {
-    $("#roman").html('&#9760;')
+    let val = dec2Roman( Number( $( '#decimal' ).val() ) )
+    if ( val.length === 0 ) val = '&nbsp;'
+    $( '#roman' ).html( val )
+  } catch ( e ) {
+    $( '#roman' ).html( '&#9760;' )
   }
-})
+} )
