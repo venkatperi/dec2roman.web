@@ -29,15 +29,36 @@ import fs from 'fs';
 import $ from 'jquery';
 // noinspection ES6UnusedImports
 import popper from 'popper.js';
+
+import toastr from 'toastr';
+
 import './scss/main.scss'
 
+
+import ClipboardJS from 'clipboard'
+
+const skull = '\u2620';
+
+function output( str ) {
+  $( '#roman' ).val( str )
+}
 
 $( '#decimal' ).keyup( () => {
   try {
     let val = dec2Roman( Number( $( '#decimal' ).val() ) )
-    if ( val.length === 0 ) val = '&nbsp;'
-    $( '#roman' ).html( val )
+    if ( val.length === 0 ) val = ''
+    output( val )
   } catch ( e ) {
-    $( '#roman' ).html( '&#9760;' )
+    // $( '#roman' ).html( '&#9760;' )
+    output(skull)
   }
 } )
+
+let clipboard = new ClipboardJS("#clippy")
+toastr.options.positionClass = 'toast-bottom-center'
+toastr.options.timeOut = 1000
+clipboard.on('success', () => {
+  toastr.success("Copied to clipboard" );
+})
+
+$("#decimal").focus()
