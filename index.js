@@ -41,6 +41,9 @@ const skull = '\u2620';
 
 const decimal = $( '#decimal' )
 const roman = $( '#roman' )
+const romanMessage = $( '#roman-message' )
+const decimalMessage = $( '#decimal-message' )
+
 let opts = {
   d2r: { mode: 'ibar' },
   r2d: { strict: true },
@@ -57,23 +60,45 @@ function showDecimal( str ) {
 decimal.keyup( () => {
   const dec = decimal.val()
   let val = ''
-  decimal.removeClass( 'error-border' )
+  decimalError()
   if ( dec.length > 0 ) {
     try {
       val = dec2Roman( dec, opts.d2r )
       if ( val.length === 0 ) val = ''
     } catch ( e ) {
       console.log( e )
-      decimal.addClass( 'error-border' )
+      decimalError(e)
     }
   }
   showRoman( val )
 } )
 
+let decimalError = ( e ) => {
+  if ( !e ) {
+    decimal.removeClass( 'error-border' )
+    decimalMessage.html( '&nbsp;' )
+  }
+  else {
+    decimal.addClass( 'error-border' )
+    decimalMessage.text( e.message )
+  }
+}
+
+let romanError = ( e ) => {
+  if ( !e ) {
+    roman.removeClass( 'error-border' )
+    romanMessage.html( '&nbsp;' )
+  }
+  else {
+    roman.addClass( 'error-border' )
+    romanMessage.text( e.message )
+  }
+}
+
 roman.keyup( () => {
   let val = ''
   let r = roman.val()
-  roman.removeClass( 'error-border' )
+  romanError()
   if ( r.length > 0 )
     try {
       r = r.toUpperCase().replace( '\'', '̅' )
@@ -82,14 +107,14 @@ roman.keyup( () => {
       if ( val.length === 0 ) val = ''
     } catch ( e ) {
       console.log( e )
-      roman.addClass( 'error-border' )
+      romanError(e)
     }
   showDecimal( val )
 } )
 
 let clipboard = new ClipboardJS( '#clippy' )
 toastr.options.positionClass = 'toast-bottom-center'
-toastr.options.timeOut = 1000
+// toastr.options.timeOut = 1000
 clipboard.on( 'success', () => {
   toastr.success( 'Copied to clipboard' );
 } )

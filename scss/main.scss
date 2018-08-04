@@ -180,9 +180,16 @@ body {
 }
 
 label {
-  margin: 1rem 0 0;
+  //margin: 1rem 0 0;
 }
 
 .mastfoot {
   text-align: center;
+}
+
+#roman-message, #decimal-message {
+  font-family: "Share Tech Mono", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  height: 1.5rem;
 }
