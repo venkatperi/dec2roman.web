@@ -21,7 +21,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Roman Numbers</title>
 </head>
-<body class="text-center">
+
+<body >
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
     <div class="inner">
@@ -36,13 +37,17 @@
 
   <main role="main" class="inner cover">
     <div id="content">
-      <div class="roman mx-auto">
-        <textarea id="roman" readonly></textarea>
-        <button class="btn" data-clipboard-target="#roman" id="clippy" title="Copy to clipboard ">
-          <img height="16" src="./images/clippy.svg" alt="Copy to clipboard">
-        </button>
+      <div class="roman form-group">
+        <label for="roman">ROMANUS</label>
+        <textarea id="roman" class="form-content"></textarea>
+        <!--<button class="btn" data-clipboard-target="#roman" id="clippy" title="Copy to clipboard ">-->
+          <!--<img height="16" src="./images/clippy.svg" alt="Copy to clipboard">-->
+        <!--</button>-->
       </div>
-      <input id="decimal" type="text" placeholder="decimales...">
+      <div class="decimal form-group">
+        <label for="decimal">DECIMALES</label>
+        <textarea id="decimal" class="form-control"></textarea>
+      </div>
     </div>
   </main>
 

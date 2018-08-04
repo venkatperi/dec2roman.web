@@ -22,7 +22,10 @@
 // noinspection ES6UnusedImports
 import bootstrap from 'bootstrap';
 
-import {dec2Roman} from 'dec2roman';
+
+import ClipboardJS from 'clipboard'
+
+import {dec2Roman, roman2Dec} from 'dec2roman';
 // noinspection ES6UnusedImports
 import fs from 'fs';
 // noinspection ES6UnusedImports
@@ -34,31 +37,61 @@ import toastr from 'toastr';
 
 import './scss/main.scss'
 
-
-import ClipboardJS from 'clipboard'
-
 const skull = '\u2620';
 
-function output( str ) {
-  $( '#roman' ).val( str )
+const decimal = $( '#decimal' )
+const roman = $( '#roman' )
+let opts = {
+  d2r: { mode: 'ibar' },
+  r2d: { strict: true },
 }
 
-$( '#decimal' ).keyup( () => {
-  try {
-    let val = dec2Roman( Number( $( '#decimal' ).val() ) )
-    if ( val.length === 0 ) val = ''
-    output( val )
-  } catch ( e ) {
-    // $( '#roman' ).html( '&#9760;' )
-    output(skull)
+function showRoman( str ) {
+  roman.val( str )
+}
+
+function showDecimal( str ) {
+  decimal.val( str )
+}
+
+decimal.keyup( () => {
+  const dec = decimal.val()
+  let val = ''
+  decimal.removeClass( 'error-border' )
+  if ( dec.length > 0 ) {
+    try {
+      val = dec2Roman( dec, opts.d2r )
+      if ( val.length === 0 ) val = ''
+    } catch ( e ) {
+      console.log( e )
+      decimal.addClass( 'error-border' )
+    }
   }
+  showRoman( val )
 } )
 
-let clipboard = new ClipboardJS("#clippy")
+roman.keyup( () => {
+  let val = ''
+  let r = roman.val()
+  roman.removeClass( 'error-border' )
+  if ( r.length > 0 )
+    try {
+      r = r.toUpperCase().replace( '\'', '̅' )
+      showRoman( r )
+      val = roman2Dec( r, opts.r2d )
+      if ( val.length === 0 ) val = ''
+    } catch ( e ) {
+      console.log( e )
+      roman.addClass( 'error-border' )
+    }
+  showDecimal( val )
+} )
+
+let clipboard = new ClipboardJS( '#clippy' )
 toastr.options.positionClass = 'toast-bottom-center'
 toastr.options.timeOut = 1000
-clipboard.on('success', () => {
-  toastr.success("Copied to clipboard" );
-})
+clipboard.on( 'success', () => {
+  toastr.success( 'Copied to clipboard' );
+} )
 
-$("#decimal").focus()
+decimal.focus()

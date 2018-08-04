@@ -117,59 +117,48 @@ body {
 }
 
 #content {
-  border: solid 1px #aaa;
-  margin-top: 4rem;
+  //border: solid 1px #aaa;
+  margin-top: 2rem;
 }
 
 .roman {
+}
+
+#roman, #decimal {
+  height: 200px;
+  color: #555;
+  width: 100%;
+  padding: 10px 20px;
+  max-height: 300px;
+
   font-family: 'News Cycle', sans-serif;
   font-size: 3rem;
-  color: #222;
-  width: 100%;
   text-overflow: clip;
   overflow-wrap: break-word;
   position: relative;
   text-align: left;
   background-color: #eee;
-  height: 200px;
 }
 
-textarea#roman {
-  height: 200px;
-  color: #555;
-  background: transparent;
-  border: none;
-  width: 100%;
-  padding: 10px 20px;
-  max-height: 300px;
+.error-border {
+  background: rgba(200,100,100,0.25) !important;
 }
 
-input#decimal {
-  background: rgba(125, 140, 115, 0.75);
-  //background: #bbb;
+#decimal {
+  //background: rgba(125, 140, 115, 0.75);
   font-family: 'Share Tech Mono', monospace;
   font-size: 3rem;
-  //text-align: center;
   line-height: 3rem;
-  padding: 10px 20px;
-  border: none;
-  outline: none;
+  //padding: 10px 20px;
+  //border: none;
+  //outline: none;
   width: 100%;
   height: 1.5em;
-  //border-radius: 3px;
   color: #333;
-  //box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, .5);
 }
 
-input#decimal::placeholder{
+#decimal::placeholder {
   color: #808080;
-}
-#roman::placeholder {
-  color: #ccc;
-}
-
-input#decimal:focus {
-  border: none;
 }
 
 /*
@@ -190,3 +179,10 @@ input#decimal:focus {
   background-color: transparent;
 }
 
+label {
+  margin: 1rem 0 0;
+}
+
+.mastfoot {
+  text-align: center;
+}
