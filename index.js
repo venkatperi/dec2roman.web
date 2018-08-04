@@ -61,6 +61,7 @@ decimal.keyup( () => {
   const dec = decimal.val()
   let val = ''
   decimalError()
+  romanError()
   if ( dec.length > 0 ) {
     try {
       val = dec2Roman( dec, opts.d2r )
@@ -99,6 +100,7 @@ roman.keyup( () => {
   let val = ''
   let r = roman.val()
   romanError()
+  decimalError()
   if ( r.length > 0 )
     try {
       r = r.toUpperCase().replace( '\'', '̅' )
